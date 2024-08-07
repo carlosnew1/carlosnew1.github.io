@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+    <header>
+        <div class="container">
+
+            <p class="logo">ProgramaYa!</p>
+
+
+            <div id="fechaHora" class="container-fecha-hora">
+
+                <p id="fecha"> </p>
+                <p id="hora"></p>
+                <p id="dias-transcurridos"></p>
+                <p id="dias-restantes"></p>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="slider-frame">
+            <ul>
+                <li><img src="images/230703-PND-2022-2026_1920x500.jpg" alt=""></li>
+                <li><img src="images/230703-reforma-salud_1920x500.jpg" alt=""></li>
+                <li><img src="images/230706-reforma-agraria_1920x500.jpg" alt=""></li>
+                <li><img src="images/banner_pc.png" alt=""></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <div id="app" class="container-login">
+
+            <h2>Iniciar Sesión</h2>
+
+            <div class="form-control">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Introduce el usuario" required>
+            </div>
+
+            <div class="form-control">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Introduce la contraseña" required>
+            </div>
+
+            <button onclick="login()">Entrar</button>
+
+
+        </div>
+        <div id="app" class="container-login">
+
+            <h2>Iniciar Sesión</h2>
+
+            <div class="form-control">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Introduce el usuario" required>
+            </div>
+
+            <div class="form-control">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Introduce la contraseña" required>
+            </div>
+
+            <button onclick="login()">Entrar</button>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+<script>
+
+
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if (username === 'usuario' && password === 'contra') {
+            document.getElementById('app').innerHTML = `
+            <h1>Bienvenido/a al sistema</h1>
+            <p>¡Tu inicio de sesión fue exitoso!</p>
+            <p>Cabron</p>
+            <img src="https://via.placeholder.com/150" alt="Imagen de Bienvenida">
+        `;
+        } else {
+            alert('Usuario o contraseña incorrectos');
+
+        }
+    }
+
+    function mostrarFechaHora() {
+        var fechaHora = new Date();
+        var fecha = fechaHora.toLocaleDateString();
+        var hora = fechaHora.toLocaleTimeString();
+
+        document.getElementById('fecha').innerHTML = "Fecha: " + fecha;
+        document.getElementById('hora').innerHTML = "Hora: " + hora;
+
+    }
+
+    mostrarFechaHora();
+    setInterval(mostrarFechaHora, 1000);
+
+    function calcularDiasRestantes() {
+        var fechaActual = new Date();
+        var fechaReferencia = new Date("2024-12-31");
+        var diferencia = fechaReferencia - fechaActual;
+        var diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+
+        document.getElementById('dias-restantes').innerHTML = "Dias restantes : " + diasRestantes;
+    }
+
+    calcularDiasRestantes();
+    setInterval(calcularDiasRestantes, 1000);
+
+    function calcularDiasTranscurridos() {
+        var fechaActual = new Date();
+        var fechaReferencia = new Date("2024-01-01");
+        var diferencia = fechaActual - fechaReferencia;
+        var diasTranscurridos = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+        document.getElementById('dias-transcurridos').innerHTML = "Dias transcurridos : " + diasTranscurridos;
+    }
+
+    calcularDiasTranscurridos();
+    setInterval(calcularDiasTranscurridos, 1000);
+
+</script>
+
+</html>
